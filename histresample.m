@@ -13,24 +13,19 @@ total = sum(inputhist);
 % N bins
 nbins = length(inputhist);
 
-% Cumulative histogram
-cumsum_his = cumsum(inputhist);
+% Lookup table: datapoint index -> bin it belongs to
+bin_lut = repelem((1:nbins)', inputhist(:));
 
 %% Sample
 % New histogram
-newcumhist = zeros(nbins, niter);
+newhist = zeros(nbins, niter);
 
-% random sample
-inds = randi(total, [n, niter]);
+for iter = 1 : niter
+    % random sample (with replacement)
+    inds = randi(total, [n, 1]);
 
-% Generate new cumulative histogram
-for ibin = 1 : nbins
-    for iter = 1 : niter
-        newcumhist(ibin, iter) = sum(inds(:,iter) <= cumsum_his(ibin));
-    end
+    % Count samples per bin
+    newhist(:, iter) = accumarray(bin_lut(inds), 1, [nbins, 1]);
 end
-
-% New histograms
-newhist = cat(1, newcumhist(1,:), diff(newcumhist, 1, 1));
 
 end

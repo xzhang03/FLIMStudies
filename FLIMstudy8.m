@@ -13,7 +13,7 @@ photons2sim = [25 50 100 200 500 1000 5000 10000 100000 350000];
 nsims = length(photons2sim);
 
 % Iterations
-niter = 1000;
+niter = 100;
 
 % Scale deconv
 deconv2 = round(deconv*19000);
