@@ -6,6 +6,13 @@ if nargin < 3
     niter = 1;
 end
 
+%% Fast path: compiled multinomial sampler (mex -O histresample_mex.cpp)
+% Same distribution, cost independent of n. Seeded from MATLAB's rng.
+if exist('histresample_mex', 'file') == 3
+    newhist = histresample_mex(double(inputhist), n, niter, randi(2^32-1));
+    return
+end
+
 %% Constants
 % total number of datapoints
 total = sum(inputhist);
