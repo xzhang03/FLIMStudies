@@ -8,3 +8,4 @@ Scripts for FLIM simulations. The code is for consultation purposes only.
 | FLIMStudy3 | Simulate the effects of intensity changes on lifetime estimates |
 | FLIMStudy4 | Simulate TCSPC time jitter when estimating small lifetime changes |
 | FLIMStudy5 | Simulate IEM99, an alternative IEM metric that is percentile-based |
+| FLIMStudy8 | Simulate Tm and IEM SNR using dLight1.1 data |
